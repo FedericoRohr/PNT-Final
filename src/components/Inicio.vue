@@ -5,7 +5,7 @@
     <label for="importe">Busque una receta</label>
     <br />
     <input type="text" v-model="receta" />
-      
+
     <div class="table-responsive">
       <table class="table table-dark">
         <tr>
@@ -25,6 +25,28 @@
         </tr>
       </table>
     </div>
+
+    <input type="text" v-model="arrayIngredientes" />
+
+    <div class="table-responsive">
+      <table class="table table-dark">
+        <tr>
+          <th>Titulo</th>
+          <th>ingredientes</th>
+          <th>descripcion</th>
+          <th>categoria</th>
+          <th>momento</th>
+        </tr>
+
+        <tr v-for="(receta, index) in filtrarIngredientes" :key="index">
+          <td>{{ receta.titulo }}</td>
+          <td>{{ receta.ingredientes }}</td>
+          <td>{{ receta.descripcion }}</td>
+          <td>{{ receta.categoria }}</td>
+          <td>{{ receta.momento }}</td>
+        </tr>
+      </table>
+    </div>
   </section>
 </template>
 
@@ -33,9 +55,9 @@ export default {
   name: "src-components-inicio",
   props: [],
   mounted() {
-    this.getIngredientes()
-    this.getRecetas()
-     /* console.log(this.getPost(this.urlIngrediente))
+    this.getIngredientes();
+    this.getRecetas();
+    /* console.log(this.getPost(this.urlIngrediente))
      console.log(this.getPost(this.urlReceta)) */
     /* this.getPost(this.urlIngrediente)
     this.getPost(this.urlReceta) */
@@ -46,15 +68,15 @@ export default {
       urlReceta: "https://635723ad9243cf412f93b0b0.mockapi.io/recetas",
       urlIngrediente:
         "https://635723ad9243cf412f93b0b0.mockapi.io/ingredientes",
-      recetas:[],
-      ingredientes:[],
-      recetasXIngrediente:[],
+      recetas: [],
+      ingredientesTotal: [],
+      ingredientesSelecionados:[],
     };
   },
   methods: {
     async getPost(url) {
       try {
-        let respuesta = await this.axios(url)
+        let respuesta = await this.axios(url);
         return respuesta.data;
       } catch (error) {
         console.error(error);
@@ -64,7 +86,6 @@ export default {
       try {
         let respuesta = await this.axios(this.urlReceta);
         this.recetas = respuesta.data;
-
       } catch (error) {
         console.error(error);
       }
@@ -72,7 +93,7 @@ export default {
     async getIngredientes() {
       try {
         let respuesta = await this.axios(this.urlIngrediente);
-        this.ingredientes = respuesta.data; 
+        this.ingredientesTotal = respuesta.data;
       } catch (error) {
         console.error(error);
       }
@@ -92,12 +113,25 @@ export default {
         return null;
       }
     },
-   /*  filtrarIngredientes(ingredientes){
-      let recetasFiltradas = []
-      this.recetas.forEach(element => {
-      ingredientes.forEach()
-    });
-    } */
+    filtrarIngredientes() {
+      let recetasFiltradas = [];
+      this.recetas.forEach((element) => {
+        let contador = 0;
+        let ingredientesReceta = element.ingredientes.map((i) => i.nombre);
+        this.ingredientesSelecionados.forEach((ingr) => {
+          if (ingredientesReceta.includes(ingr.nombre)) {
+            contador++;
+          }
+        });
+        let recetaCopia = {...element}
+        recetaCopia.contador = contador
+        recetasFiltradas.push(recetaCopia)
+      });
+
+      // elimnar los que no tiene coincidencia 
+      // ordenarlos por mayor coincidencia
+      return recetasFiltradas;
+    },
   },
 };
 </script>
