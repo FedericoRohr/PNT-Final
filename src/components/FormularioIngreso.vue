@@ -94,15 +94,14 @@ export default {
       };
     },
     enviar() {
-      this.metodoPost({...this.formData})
+      this.metodoPost(this.formData.username, this.formData.password)
       this.formData = this.getInitialData();
-      console.log({...this.formData})
       this.formState._reset();
     },
     async metodoPost(usuario, contra){
       try {
         console.log({usuario, contra})
-          let {data: res} = await this.axios.post(this.ruta,{username: usuario, password: contra}, {"content-type": "aplication/json"})
+          let {data: res} = await this.axios.post(this.ruta,{username: usuario, password: contra}, {"content-type": "aplication/json", "Access-Control-Allow-Origin": true})
           console.log(res)
         }
         catch(error) { console.error(error) } 
