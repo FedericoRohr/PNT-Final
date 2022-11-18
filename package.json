@@ -1,5 +1,5 @@
 {
-  "name": "simulacro-parcial",
+  "name": "pnt-tp-final",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,10 +15,11 @@
     "jquery": "^3.6.1",
     "npm": "^8.19.2",
     "popper.js": "^1.16.1",
+    "primeicons": "^6.0.1",
+    "primevue": "^2.9.2",
     "vue": "^2.6.14",
     "vue-axios": "^3.4.1",
     "vue-form": "^4.10.3",
-    "vue-multiselect": "^2.1.6",
     "vue-router": "^3.6.5"
   },
   "devDependencies": {

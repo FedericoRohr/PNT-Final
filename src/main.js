@@ -2,8 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import './bootstrap.js'
 import './form.js'
-import './axios'
-import './multiselect'
+import './axios.js'
+import './prime.js'
+
 
 import { router } from './router'
 
