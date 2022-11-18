@@ -23,6 +23,12 @@
       </router-link>
     </li>
 
+    <li class="nav-item">
+      <router-link to="/formularioIngreso">
+        <a class="nav-link" href="#">Ingreso de usuarios</a>
+      </router-link>
+    </li>
+
 
   </ul>
 </div>
