@@ -1,193 +1,320 @@
 <template>
-
   <section class="src-components-ingreso-gastos">
     <div class="jumbotron">
       <h2>Ingresa una receta</h2>
-      <br>
 
-      <vue-form :state="formState" @submit.prevent="enviar()">
-          <!-- ----------------------------------- -->
-          <!--            CAMPO TITULO             -->
-          <!-- ----------------------------------- -->
-          <validate tag="div">
-            <label for="titulo">Titulo</label>
-            <input 
-              type="text" 
-              id="titulo" 
-              class="form-control" 
-              autocomplete="off"
-              v-model="formData.titulo"
-              name="titulo" 
-              required
-              :minlength="tituloMinLength"
+      <table>
+        <tr>
+          <td class="receta">
+            <!--    FORMULARIO RECETA     -->
+            <vue-form :state="formStateReceta" @submit.prevent="enviarReceta()">
+              <!-- ----------------------------------- -->
+              <!--            CAMPO TITULO             -->
+              <!-- ----------------------------------- -->
+              <validate tag="div">
+                <label for="titulo">Titulo</label>
+                <input
+                  type="text"
+                  id="titulo"
+                  class="form-control"
+                  autocomplete="off"
+                  v-model="formDataReceta.titulo"
+                  name="titulo"
+                  required
+                  :minlength="tituloMinLength"
+                />
+                <field-messages name="titulo" show="$dirty">
+                  <div slot="required" class="alert alert-danger mt-1">
+                    Campo requerido
+                  </div>
+                  <div slot="minlength" class="alert alert-danger mt-1">
+                    Este campo debe poseer al menos
+                    {{ tituloMinLength }} caracteres
+                  </div>
+                </field-messages>
+              </validate>
+
+              <br />
+
+              <!-- ----------------------------------- -->
+              <!--         CAMPO DESCRIPCIÓN           -->
+              <!-- ----------------------------------- -->
+              <validate tag="div">
+                <label for="descripcion">Descripción</label>
+                <textarea
+                  type="text"
+                  id="descripcion"
+                  class="form-control"
+                  autocomplete="off"
+                  v-model.trim="formDataReceta.descripcion"
+                  name="descripcion"
+                  required
+                  rows="15"
+                >
+                </textarea>
+                <field-messages name="descripcion" show="$dirty">
+                  <div slot="required" class="alert alert-danger mt-1">
+                    Campo requerido
+                  </div>
+                </field-messages>
+              </validate>
+
+              <br />
+
+              <!-- ----------------------------------- -->
+              <!--          CAMPO CATEGORÍA            -->
+              <!-- ----------------------------------- -->
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <validate tag="div">
+                    <label for="categoria">Categoría</label>
+                    <select
+                      name="categoria"
+                      id="categoria"
+                      class="form-control"
+                      v-model="formDataReceta.categoria"
+                      required
+                    >
+                      <option
+                        v-for="(categoria, index) in options.categorias"
+                        :key="index"
+                      >
+                        {{ categoria }}
+                      </option>
+                    </select>
+                    <field-messages name="categoria" show="$dirty">
+                      <div slot="required" class="alert alert-danger mt-1">
+                        Campo requerido
+                      </div>
+                    </field-messages>
+                  </validate>
+                </div>
+                <div class="form-group col-md-6">
+                  <validate tag="div">
+                    <label for="momento">Momento</label>
+                    <select
+                      name="cateogria"
+                      id="momento"
+                      class="form-control"
+                      v-model="formDataReceta.momento"
+                      required
+                    >
+                      <option
+                        v-for="(momento, index) in options.momentos"
+                        :key="index"
+                      >
+                        {{ momento }}
+                      </option>
+                    </select>
+                    <field-messages name="momento" show="$dirty">
+                      <div slot="required" class="alert alert-danger mt-1">
+                        Campo requerido
+                      </div>
+                    </field-messages>
+                  </validate>
+                </div>
+              </div>
+              <button
+                class="btn btn-success my-3"
+                :disabled="formStateReceta.$invalid"
+              >
+                Enviar receta
+              </button>
+            </vue-form>
+          </td>
+          <td class="receta">
+            <!--    FORMULARIO INGREDIENTES     -->
+            <vue-form
+              :state="formStateIngrediente"
+              @submit.prevent="enviarIngrediente()"
             >
-            <field-messages name="nombre" show="$dirty">
-              <div slot="required" class="alert alert-danger mt-1">Campo requerido</div>
-              <div slot="minlength" class="alert alert-danger mt-1">Este campo debe poseer al menos {{ nombreMinLength }} caracteres</div>
-            </field-messages>
-          </validate>        
+              <!-- ----------------------------------- -->
+              <!--         CAMPO INGREDIENTE           -->
+              <!-- ----------------------------------- -->
+              <validate tag="div">
+                <label for="ingrediente">Ingrediente</label>
+                <input
+                  type="text"
+                  id="ingrediente"
+                  class="form-control"
+                  autocomplete="off"
+                  v-model="formDataIngrediente.nombre"
+                  name="ingrediente"
+                  required
+                />
+                <field-messages name="ingrediente" show="$dirty">
+                  <div slot="required" class="alert alert-danger mt-1">
+                    Campo requerido
+                  </div>
+                </field-messages>
+              </validate>
 
-          <br>
+              <br />
 
-          <!-- ----------------------------------- -->
-          <!--         CAMPO DESCRIPCIÓN           -->
-          <!-- ----------------------------------- -->
-          <validate tag="div">
-            <label for="descripcion">Descripción</label>
-            <input 
-              type="text" 
-              id="descripcion" 
-              class="form-control" 
-              autocomplete="off"
-              v-model.trim="formData.descripcion"
-              name="descripcion" 
-              required
-            >
-            <field-messages name="descripcion" show="$dirty">
-              <div slot="required" class="alert alert-danger mt-1">Campo requerido</div>
-            </field-messages>
-          </validate>    
+              <!-- ----------------------------------- -->
+              <!--           CAMPO CANTIDAD            -->
+              <!-- ----------------------------------- -->
+              <validate tag="div">
+                <label for="cantidad">Cantidad</label>
+                <input
+                  type="text"
+                  id="cantidad"
+                  class="form-control"
+                  autocomplete="off"
+                  v-model.trim="formDataIngrediente.cantidad"
+                  name="cantidad"
+                  required
+                />
+                <field-messages name="cantidad" show="$dirty">
+                  <div slot="required" class="alert alert-danger mt-1">
+                    Campo requerido
+                  </div>
+                </field-messages>
+              </validate>
 
-          <br>
-
-          <!-- ----------------------------------- -->
-          <!--         CAMPO INGREDIENTES          -->
-          <!-- ----------------------------------- -->
-          <validate tag="div">
-            <label for="ingrediente">Ingredientes</label>
-            <input 
-              type="text" 
-              id="ingrediente" 
-              class="form-control" 
-              autocomplete="off"
-              v-model.number="formData.ingrediente"
-              name="ingrediente" 
-              required
-            > 
-            <field-messages name="ingrediente" show="$dirty">
-              <div slot="required" class="alert alert-danger mt-1">Campo requerido</div>
-            </field-messages>
-          </validate>
-
-          <br>
-
-          <button class="btn btn-success my-3" :disabled="formState.$invalid">Enviar</button>
-      </vue-form>
-
-      <br>
-      <br>
-      <h2>Tabla de Gastos</h2>
-      <hr>
-      <hr>
-
-      <div class="form-group">
-        <label for="presupuesto"><i><b>Presupuesto:</b></i></label>
-        <input type="number" v-model="presupuesto" class="form-control" id="presupuesto"  placeholder="Ingresa un presupuesto">
-      </div>
-
-      <hr>
-
-      <table class="table table-dark">
-        <thead>
-          <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Importe</th>
-            <th scope="col">Fecha de creación</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(dato,index) in datos" v-bind:key="index">
-            <td>{{ dato.nombre }}</td>
-            <td>{{ dato.descripcion }}</td>
-            <td>{{ `$ ${dato.importe}` }}</td>
-            <td>{{ dato.timestamp }}</td>
-          </tr>
-          <tr :style="{'color': gastoTotal().color}">
-            <td></td>
-            <td><b>TOTAL</b></td>
-            <td><b>{{ `$ ${gastoTotal().gastoTotal}` }}</b></td>
-            <td></td>
-          </tr>
-        </tbody>
+              <button
+                class="btn btn-success my-3"
+                :disabled="formStateIngrediente.$invalid"
+              >
+                Agregar
+              </button>
+            </vue-form>
+          </td>
+        </tr>
       </table>
     </div>
-  </section>
 
+    <br />
+
+    <div class="jumbotron" v-if="mostrarReceta()">
+      <div
+        class="jumbotron"
+        style="background-color: rgb(235, 255, 251); color: black"
+      >
+        <h1>{{ formDataReceta.titulo }}</h1>
+        <hr />
+        <h5>{{ `Categoría: ${formDataReceta.categoria}` }}</h5>
+        <h5>{{ `Momento: ${formDataReceta.momento}` }}</h5>
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th>Ingrediente</th>
+                <th>Cantidad</th>
+              </tr>
+            </thead>
+            <tr v-for="(ing, index) in ingredientes" :key="index">
+              <td>{{ ing.nombre }}</td>
+              <td>{{ ing.cantidad }}</td>
+            </tr>
+          </table>
+        </div>
+        <hr />
+        <p style="white-space: pre-line">{{ formDataReceta.descripcion }}</p>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
-
-  export default  {
-    name: 'src-components-ingreso-gastos',
-    props: [],
-    mounted () {
-
-    },
-    data () {
+export default {
+  name: "src-components-ingreso-gastos",
+  props: [],
+  async beforeMount() {
+    await this.getOptions();
+  },
+  data() {
+    return {
+      formDataReceta: this.getInitialDataReceta(),
+      formDataIngrediente: this.getInitialDataIngrediente(),
+      formStateReceta: {},
+      formStateIngrediente: {},
+      datos: null,
+      ingredientes: [],
+      tituloMinLength: 3,
+      limiteVerde: 1000,
+      limiteNaranja: 5000,
+      presupuesto: "",
+      url: "http://localhost:8080/recetas/",
+      options: [],
+    };
+  },
+  methods: {
+    getInitialDataReceta() {
       return {
-        formData: this.getInitialData(),
-        formState: {},
-        datos: [],
-        nombreMinLength: 3,
-        nombreMaxLength: 15,
-        limiteVerde: 1000,
-        limiteNaranja: 5000,
-        presupuesto: ""
+        titulo: "",
+        descripcion: "",
+        categoria: "",
+        momento: ""
+      };
+    },
+    getInitialDataIngrediente() {
+      return {
+        nombre: "",
+        cantidad: "",
+      };
+    },
+    async enviarReceta() {
+      this.datos = this.formDataReceta;
+      this.datos.ingredientes = this.ingredientes
+      console.log(JSON.stringify(this.datos, null, 4));
+      this.formDataReceta = this.getInitialDataReceta();
+      this.ingredientes = []
+      this.formStateReceta._reset();
+      try {
+        let {data: receta} = await this.axios.post(this.url, this.datos, { "content-type": "application/json" })
+        console.log(receta);
+      } catch (error) {
+        console.log(error);
       }
     },
-    methods: {
-      getInitialData() {
-        return {
-          nombre: null,
-          descripcion: null,
-          importe: null,
-          timestamp: null
-        }
-      },
-      enviar() {
-        this.formData.timestamp = new Date().toLocaleString()
-        this.datos.push(this.formData)
-        this.formData = this.getInitialData()
-        this.formState._reset()
-      },
-      gastoTotal() {
-        let gastoTotal = this.datos.reduce((prev, curr) => {
-          return prev + curr.importe
-        }, 0)
-        let color = "white"
-        if (this.presupuesto != "" && gastoTotal > this.presupuesto) {
-          color = "red"
-        }
-        else if (this.datos.length > 0 ){
-          if (gastoTotal < this.limiteVerde) {
-            color = "green"
-          }
-          else if (gastoTotal > this.limiteNaranja) {
-            color = "orange"
-          }
-          else {
-            color = "magenta"
-          }
-        }
-        return {gastoTotal, color}
+    enviarIngrediente() {
+      this.ingredientes.push(this.formDataIngrediente);
+      this.formDataIngrediente = this.getInitialDataIngrediente();
+      this.formStateIngrediente._reset();
+    },
+    mostrarReceta() {
+      return (
+        this.formDataReceta.titulo != "" ||
+        this.formDataReceta.descripcion != "" ||
+        this.ingredientes.length > 0
+      );
+    },
+    async getOptions() {
+      try {
+        let res = await this.axios(this.url);
+        let recetas = res.data;
+        let categorias = recetas.map((receta) => receta.categoria);
+        categorias = [...new Set(categorias)];
+        let momentos = recetas.map((receta) => receta.momento);
+        momentos = [...new Set(momentos)];
+        this.options = { categorias, momentos };
+      } catch (error) {
+        console.log(error);
       }
     },
-    computed: {
-      
-    }
-}
-
-
+  },
+  computed: {},
+};
 </script>
 
 <style scoped lang="css">
-  .jumbotron {
-    background-color: teal;
-    color: white;
-  }
+.jumbotron {
+  background-color: teal;
+  color: white;
+}
 
-  hr {
-    background-color: #bbb;
-  }
+hr {
+  background-color: #bbb;
+}
+
+td.receta {
+  padding: 50px;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  width: -moz-available;
+}
 </style>
