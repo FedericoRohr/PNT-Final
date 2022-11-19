@@ -18,7 +18,7 @@
     </li> 
    
     <li class="nav-item">
-      <router-link to="/formulario">
+      <router-link to="/formulario-receta">
         <a class="nav-link" href="#">Carga de recetas</a>
       </router-link>
     </li>

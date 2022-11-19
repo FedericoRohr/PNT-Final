@@ -1,17 +1,19 @@
 <template>
   <div id="app">
-    <NavBar/>
-    <router-view></router-view>
+    <div class="container-fluid mt-3">
+      <div class="jumbotron">
+        <NavBar />
+        <router-view></router-view>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-
-
-import NavBar from './components/NavBar.vue';
+import NavBar from "./components/NavBar.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     NavBar,
   }
@@ -19,5 +21,4 @@ export default {
 </script>
 
 <style>
-
 </style>
