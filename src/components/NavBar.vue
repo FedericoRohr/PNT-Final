@@ -21,17 +21,20 @@
             </router-link>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item" v-if="usuarioLogeadoVuex">
             <router-link to="/formulario-receta">
               <a class="nav-link" href="#">Carga de recetas</a>
             </router-link>
           </li>
         </ul>
-          <button class="btn btn-success my-2 my-sm-0 mr-3" @click="$router.push('/login')">
+          <button class="btn btn-success my-2 my-sm-0 mr-3" @click="$router.push('/login')" v-if="!usuarioLogeadoVuex">
             Login
           </button>
-          <button class="btn btn-success my-2 my-sm-0" @click="$router.push('/register')">
+          <button class="btn btn-success my-2 my-sm-0" @click="$router.push('/register')" v-if="!usuarioLogeadoVuex">
             Register
+          </button>
+          <button class="btn btn-danger my-2 my-sm-0" @click="cerrarSesion()" v-if="usuarioLogeadoVuex">
+            Logout
           </button>
       </div>
     </nav>
@@ -47,6 +50,14 @@ export default {
     return {};
   },
   methods: {
+    cerrarSesion() {
+      try {
+        this.$store.dispatch("logoutUsuario");
+      }
+      catch (error) {
+        console.log(error);
+      }
+    }
   },
   computed: {},
 };

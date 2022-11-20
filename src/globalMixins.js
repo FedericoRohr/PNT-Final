@@ -27,6 +27,18 @@ const miMixinGlobal = {
         mostrarLikesVuex() {
             let likes = this.$store.state.receta.likes
             return likes
+        },
+        mostrarIdVuex() {
+            let id = this.$store.state.receta._id
+            return id
+        },
+        usuarioLogeadoVuex() {
+            if (this.$store.state.usuario) {
+                return true
+            }
+            else {
+                return false
+            }
         }
     }
 }

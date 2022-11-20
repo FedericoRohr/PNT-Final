@@ -5,23 +5,87 @@
         <table>
           <tr>
             <td>
-              <h1 class="card-title">
-                {{ mostrarTituloVuex }}
-              </h1>
+              <table>
+                <tr>
+                  <td>
+                    <h1 class="card-title">
+                      {{ mostrarTituloVuex }}
+                    </h1>
+                  </td>
+                  <td>
+                    <ul>
+                      <li>
+                        <b>Categoría: </b>
+                        {{ mostrarCategoriaVuex }}
+                      </li>
+                      <li>
+                        <b>Momento: </b>
+                        {{ mostrarMomentoVuex }}
+                      </li>
+                      <li>
+                        <b>Likes: </b>
+                        {{ mostrarLikesVuex }}
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
             </td>
-            <td>
-              <ul>
+            <td style="float: right" v-if="usuarioLogeadoVuex">
+              <ul style="list-style-type: none">
                 <li>
-                  <b>Categoría: </b>
-                  {{ mostrarCategoriaVuex }}
+                  <button
+                    type="button"
+                    class="btn btn-primary mb-3"
+                    @click="$router.push('/modificar')"
+                  >
+                    Modificar
+                  </button>
                 </li>
                 <li>
-                  <b>Momento: </b>
-                  {{ mostrarMomentoVuex }}
-                </li>
-                <li>
-                  <b>Likes: </b>
-                  {{ mostrarLikesVuex }}
+                  <!-- Button trigger modal -->
+                  <button
+                    type="button"
+                    class="btn btn-warning"
+                    data-toggle="modal"
+                    data-target="#exampleModal"
+                  >
+                    Eliminar
+                  </button>
+
+                  <!-- Modal -->
+                  <div
+                    class="modal fade"
+                    id="exampleModal"
+                    tabindex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-body">
+                          Segurx que deseas eliminar la receta?
+                        </div>
+                        <div class="modal-footer">
+                          <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal"
+                          >
+                            Close
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn-danger"
+                            @click="eliminarReceta()"
+                            data-dismiss="modal"
+                          >
+                            Eliminar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </li>
               </ul>
             </td>
@@ -59,9 +123,27 @@ export default {
   props: [],
   mounted() {},
   data() {
-    return {};
+    return {
+      url: "http://localhost:8080/recetas/",
+    };
   },
-  methods: {},
+  methods: {
+    async eliminarReceta() {
+      try {
+        await this.axios.delete(
+          `${this.url}${this.mostrarIdVuex}`,
+          this.datos,
+          {
+            "content-type": "application/json",
+          }
+        );
+        this.$store.dispatch("modificarReceta", {});
+        this.$router.push("/");
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
   computed: {},
 };
 </script>
