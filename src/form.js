@@ -4,9 +4,6 @@ import VueForm from 'vue-form'
 
 let options = {
     validators: {
-        'no-espacios' : function(value) {
-            return !value.includes(' ')
-        }
     }
 }
 
