@@ -3,7 +3,6 @@ import App from './App.vue'
 import './bootstrap.js'
 import './form.js'
 import './axios'
-import './multiselect'
 
 import { router } from './router'
 
