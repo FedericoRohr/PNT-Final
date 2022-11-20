@@ -5,6 +5,8 @@ import VueRouter from 'vue-router'
 import FormularioReceta from './components/FormularioReceta.vue'
 import BuscadorReceta from './components/BuscadorReceta.vue'
 import Receta from './components/Receta.vue'
+import LoginUsuario from './components/LoginUsuario.vue'
+import ModificarReceta from './components/ModificarReceta.vue'
 
 Vue.use(VueRouter)
 
@@ -13,7 +15,9 @@ export const router = new VueRouter({
     routes: [
         { path: '/', component: BuscadorReceta },
         { path: '/formulario-receta', component: FormularioReceta },
-        { path: '/receta', component: Receta}
+        { path: '/receta', component: Receta},
+        { path: '/login', component: LoginUsuario},
+        { path: '/modificar', component: ModificarReceta}
     ]
 })
  

@@ -118,7 +118,7 @@
                 class="btn btn-success my-3"
                 :disabled="formStateReceta.$invalid || ingredientes.length == 0"
               >
-                Enviar receta
+                Modificar receta
               </button>
             </vue-form>
           </td>
@@ -240,7 +240,7 @@ export default {
       formStateReceta: {},
       formStateIngrediente: {},
       datos: null,
-      ingredientes: [],
+      ingredientes: this.$store.state.receta.ingredientes,
       tituloMinLength: 3,
       limiteVerde: 1000,
       limiteNaranja: 5000,
@@ -252,10 +252,11 @@ export default {
   methods: {
     getInitialDataReceta() {
       return {
-        titulo: "",
-        descripcion: "",
-        categoria: "",
-        momento: "",
+        titulo: this.$store.state.receta.titulo,
+        descripcion: this.$store.state.receta.descripcion,
+        categoria: this.$store.state.receta.categoria,
+        momento: this.$store.state.receta.momento,
+        likes: this.$store.state.receta.likes,
       };
     },
     getInitialDataIngrediente() {
@@ -272,9 +273,13 @@ export default {
       this.ingredientes = [];
       this.formStateReceta._reset();
       try {
-        await this.axios.post(this.url, this.datos, {
-          "content-type": "application/json",
-        });
+        await this.axios.put(
+          `${this.url}${this.mostrarIdVuex}`,
+          this.datos,
+          {
+            "content-type": "application/json",
+          }
+        );
         this.$store.dispatch("modificarReceta", this.datos);
         this.$router.push("/receta");
       } catch (error) {
