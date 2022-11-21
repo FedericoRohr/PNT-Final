@@ -62,10 +62,10 @@
               <br />
 
               <!-- ----------------------------------- -->
-              <!--          CAMPO CATEGORÍA            -->
+              <!--           CAMPO CATEGORÍA           -->
               <!-- ----------------------------------- -->
               <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                   <validate tag="div">
                     <label for="categoria">Categoría</label>
                     <select
@@ -81,6 +81,7 @@
                       >
                         {{ categoria }}
                       </option>
+                      <option value="Otro">Otro</option>
                     </select>
                     <field-messages name="categoria" show="$dirty">
                       <div slot="required" class="alert alert-danger mt-1">
@@ -89,7 +90,35 @@
                     </field-messages>
                   </validate>
                 </div>
-                <div class="form-group col-md-6">
+                <div
+                  class="form-group col-md-6"
+                  v-if="formDataReceta.categoria == 'Otro'"
+                >
+                  <validate tag="div">
+                    <label for="otra-categoria">Categoría</label>
+                    <input
+                      type="text"
+                      id="otra-categoria"
+                      class="form-control"
+                      autocomplete="off"
+                      v-model="formDataReceta.otraCategoria"
+                      name="otra-categoria"
+                      required
+                    />
+                    <field-messages name="otra-categoria" show="$dirty">
+                      <div slot="required" class="alert alert-danger mt-1">
+                        Campo requerido
+                      </div>
+                    </field-messages>
+                  </validate>
+                </div>
+              </div>
+
+              <!-- ----------------------------------- -->
+              <!--           CAMPO MOMENTO             -->
+              <!-- ----------------------------------- -->
+              <div class="form-row">
+                <div class="form-group col-md-4">
                   <validate tag="div">
                     <label for="momento">Momento</label>
                     <select
@@ -105,8 +134,31 @@
                       >
                         {{ momento }}
                       </option>
+                      <option value="Otro">Otro</option>
                     </select>
                     <field-messages name="momento" show="$dirty">
+                      <div slot="required" class="alert alert-danger mt-1">
+                        Campo requerido
+                      </div>
+                    </field-messages>
+                  </validate>
+                </div>
+                <div
+                  class="form-group col-md-6"
+                  v-if="formDataReceta.momento == 'Otro'"
+                >
+                  <validate tag="div">
+                    <label for="otro-momento">Momento</label>
+                    <input
+                      type="text"
+                      id="otro-momento"
+                      class="form-control"
+                      autocomplete="off"
+                      v-model="formDataReceta.otroMomento"
+                      name="otro-momento"
+                      required
+                    />
+                    <field-messages name="otro-momento" show="$dirty">
                       <div slot="required" class="alert alert-danger mt-1">
                         Campo requerido
                       </div>
@@ -256,6 +308,8 @@ export default {
         descripcion: "",
         categoria: "",
         momento: "",
+        otraCategoria: "",
+        otroMomento: ""
       };
     },
     getInitialDataIngrediente() {
@@ -265,22 +319,28 @@ export default {
       };
     },
     async enviarReceta() {
-      let titulo = this.formDataReceta.titulo
-      titulo = titulo.charAt(0).toUpperCase() + titulo.slice(1).toLowerCase()
-      this.formDataReceta.titulo = titulo
+      let titulo = this.formDataReceta.titulo;
+      titulo = titulo.charAt(0).toUpperCase() + titulo.slice(1).toLowerCase();
+      this.formDataReceta.titulo = titulo;
       this.datos = this.formDataReceta;
+      if (this.formDataReceta.categoria == "Otro") {
+        this.datos.categoria = this.formDataReceta.otraCategoria
+      }
+      if (this.formDataReceta.otroMomento == "Otro") {
+        this.datos.momento = this.formDataReceta.otroMomento
+      }
       this.datos.ingredientes = this.ingredientes;
       this.formDataReceta = this.getInitialDataReceta();
       this.ingredientes = [];
       this.formStateReceta._reset();
       try {
-        let {data} = await this.axios.post(this.url, this.datos, {
+        let { data } = await this.axios.post(this.url, this.datos, {
           "content-type": "application/json",
         });
-        let insertedId = data._id
-        this.datos.likes = 0
+        let insertedId = data._id;
+        this.datos.likes = 0;
         console.log(insertedId);
-        this.datos._id = insertedId
+        this.datos._id = insertedId;
         console.log(JSON.stringify(this.datos, null, 4));
         this.$store.dispatch("modificarReceta", this.datos);
         this.$router.push("/receta");
@@ -289,9 +349,9 @@ export default {
       }
     },
     enviarIngrediente() {
-      let nombre = this.formDataIngrediente.nombre
-      nombre = nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase()
-      this.formDataIngrediente.nombre = nombre
+      let nombre = this.formDataIngrediente.nombre;
+      nombre = nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase();
+      this.formDataIngrediente.nombre = nombre;
       this.ingredientes.push(this.formDataIngrediente);
       this.formDataIngrediente = this.getInitialDataIngrediente();
       this.formStateIngrediente._reset();
