@@ -1,9 +1,6 @@
 <template >
   <section class="src-components-nav-bar">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-      <router-link to="/"> 
-        <a class="navbar-brand" href="#">Hello Kitchen</a>
-      </router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -21,6 +18,11 @@
           <li class="nav-item">
             <router-link to="/">
               <a class="nav-link" href="#">Inicio</a>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/recetas">
+              <a class="nav-link" href="#">Recetas</a>
             </router-link>
           </li>
           <li class="nav-item" v-if="!usuarioLogeadoVuex">
@@ -66,6 +68,7 @@ export default {
     cerrarSesion() {
       try {
         this.$store.dispatch("logoutUsuario");
+        this.$router.push('/')
       } catch (error) {
         console.log(error);
       }

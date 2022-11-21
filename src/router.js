@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 
 import FormularioReceta from "./components/FormularioReceta.vue";
 import BuscadorReceta from "./components/BuscadorReceta.vue";
+import Inicio from "./components/Inicio.vue";
 import Receta from "./components/Receta.vue";
 import LoginUsuario from "./components/LoginUsuario.vue";
 import ModificarReceta from "./components/ModificarReceta.vue";
@@ -13,7 +14,8 @@ Vue.use(VueRouter);
 export const router = new VueRouter({
   mode: "history",
   routes: [
-    { path: "/", component: BuscadorReceta },
+    { path: "/", component: Inicio },
+    { path: "/recetas", component: BuscadorReceta },
     { path: "/formulario-receta", component: FormularioReceta },
     { path: "/receta", component: Receta },
     { path: "/login", component: LoginUsuario },
