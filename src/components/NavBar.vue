@@ -1,6 +1,7 @@
 <template >
   <section class="src-components-nav-bar">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="cajitaNav">
+    <nav class="navbar navbar-expand-md navbar-dark">
       <button
         class="navbar-toggler"
         type="button"
@@ -15,11 +16,19 @@
 
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item logo">
+            <router-link to="/">
+              <a class="nav-link" href="#">
+                <img src="../images/Hellow Kitchen (3).png" alt="">
+              </a>
+            </router-link>
+          </li>
           <li class="nav-item">
             <router-link to="/">
               <a class="nav-link" href="#">Inicio</a>
             </router-link>
           </li>
+
           <li class="nav-item">
             <router-link to="/recetas">
               <a class="nav-link" href="#">Recetas</a>
@@ -53,6 +62,7 @@
         </button>
       </div>
     </nav>
+  </div>
   </section>
 </template>
 
@@ -79,4 +89,29 @@ export default {
 </script>
 
 <style scoped lang="css">
+.nav-link img{
+  width: 70px;
+}
+li a img{
+  margin-top: -10px!important;
+  margin-right: 0px!important;
+  margin-left: -10px;
+}
+.cajitaNav{
+  position: absolute;
+  width: 100%;
+  z-index: 10000;
+}
+nav .navbar{
+  background-color: transparent;
+}
+
+a{
+  text-decoration: none!important;
+  color: rgba(255, 255, 255, 0.738)!important;
+}
+a:hover{
+  color: #D9553B!important;
+  transition: 0.5s;
+}
 </style>
