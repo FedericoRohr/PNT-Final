@@ -88,7 +88,7 @@
             v-for="(receta, index) in recetasFiltradas"
             :key="index"
           >
-            <CardReceta :receta="receta" :id-data-toggle="index"/>
+            <CardReceta :receta="receta" :ingredientes="ingredientesSeleccionadosNombre" :id-data-toggle="index"/>
           </div>
         </div>
       </div>
@@ -146,10 +146,12 @@ export default {
       try {
         let res = await this.axios(this.urlIngredientes);
         let ingredientes = res.data;
-        this.ingredientesTotal = ingredientes.map((ingrediente) => {
+        let ingredientesTotal = ingredientes.map((ingrediente) => {
           let ingredienteNombre = { nombre: ingrediente.nombre };
           return ingredienteNombre;
-        });
+        })
+        ingredientesTotal.sort()
+        this.ingredientesTotal = ingredientesTotal
       } catch (error) {
         console.error(error);
       }
@@ -201,6 +203,9 @@ export default {
       }
       return recetasFiltradas;
     },
+    ingredientesSeleccionadosNombre() {
+      return this.ingredientesSeleccionados.map((element) => element.nombre)
+    }
   },
   watch: {
     recetasFiltradas: {

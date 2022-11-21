@@ -13,8 +13,10 @@
         </thead>
         <tbody>
           <tr v-for="(ingrediente, index) in receta.ingredientes" :key="index">
-            <td>{{ ingrediente.nombre }}</td>
-            <td>{{ ingrediente.cantidad }}</td>
+            <td v-if="ingredientes.indexOf(ingrediente.nombre) == -1">{{ ingrediente.nombre }}</td>
+            <td v-else><b>{{ ingrediente.nombre }}</b></td>
+            <td v-if="ingredientes.indexOf(ingrediente.nombre) == -1">{{ ingrediente.cantidad }}</td>
+            <td v-else><b>{{ ingrediente.cantidad }}</b></td>
           </tr>
         </tbody>
       </table>
@@ -28,7 +30,7 @@
 <script>
 export default {
   name: "src-components-card-receta",
-  props: ["receta"],
+  props: ["receta", "ingredientes"],
   mounted() {
     
   },
