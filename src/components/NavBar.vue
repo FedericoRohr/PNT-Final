@@ -1,6 +1,9 @@
 <template >
   <section class="src-components-nav-bar">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <router-link to="/"> 
+        <a class="navbar-brand" href="#">Hello Kitchen</a>
+      </router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -20,6 +23,11 @@
               <a class="nav-link" href="#">Inicio</a>
             </router-link>
           </li>
+          <li class="nav-item" v-if="!usuarioLogeadoVuex">
+            <router-link to="/newsletter">
+              <a class="nav-link" href="#">Subscribirse al Newsletter</a>
+            </router-link>
+          </li>
 
           <li class="nav-item" v-if="usuarioLogeadoVuex">
             <router-link to="/formulario-receta">
@@ -27,15 +35,20 @@
             </router-link>
           </li>
         </ul>
-          <button class="btn btn-success my-2 my-sm-0 mr-3" @click="$router.push('/login')" v-if="!usuarioLogeadoVuex">
-            Login
-          </button>
-          <button class="btn btn-success my-2 my-sm-0" @click="$router.push('/register')" v-if="!usuarioLogeadoVuex">
-            Register
-          </button>
-          <button class="btn btn-danger my-2 my-sm-0" @click="cerrarSesion()" v-if="usuarioLogeadoVuex">
-            Logout
-          </button>
+        <button
+          class="btn btn-success my-2 my-sm-0 mr-3"
+          @click="$router.push('/login')"
+          v-if="!usuarioLogeadoVuex"
+        >
+          Login
+        </button>
+        <button
+          class="btn btn-danger my-2 my-sm-0"
+          @click="cerrarSesion()"
+          v-if="usuarioLogeadoVuex"
+        >
+          Logout
+        </button>
       </div>
     </nav>
   </section>
@@ -53,11 +66,10 @@ export default {
     cerrarSesion() {
       try {
         this.$store.dispatch("logoutUsuario");
-      }
-      catch (error) {
+      } catch (error) {
         console.log(error);
       }
-    }
+    },
   },
   computed: {},
 };
