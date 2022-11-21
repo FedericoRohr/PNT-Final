@@ -88,7 +88,7 @@
             v-for="(receta, index) in recetasFiltradas"
             :key="index"
           >
-            <CardReceta :receta="receta" :ingredientes="ingredientesSeleccionadosNombre" :id-data-toggle="index"/>
+            <CardReceta :receta="receta" :ingredientes="ingredientesSeleccionadosNombre"/>
           </div>
         </div>
       </div>

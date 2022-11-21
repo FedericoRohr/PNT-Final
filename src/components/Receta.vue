@@ -130,6 +130,7 @@ export default {
   methods: {
     async eliminarReceta() {
       try {
+        console.log(this.mostrarIdVuex);
         await this.axios.delete(
           `${this.url}${this.mostrarIdVuex}`,
           this.datos,
@@ -138,7 +139,7 @@ export default {
           }
         );
         this.$store.dispatch("modificarReceta", {});
-        this.$router.push("/");
+        this.$router.push('/');
       } catch (error) {
         console.log(error);
       }

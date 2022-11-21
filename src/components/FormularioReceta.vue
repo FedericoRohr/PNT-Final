@@ -270,14 +270,18 @@ export default {
       this.formDataReceta.titulo = titulo
       this.datos = this.formDataReceta;
       this.datos.ingredientes = this.ingredientes;
-      console.log(JSON.stringify(this.datos, null, 4));
       this.formDataReceta = this.getInitialDataReceta();
       this.ingredientes = [];
       this.formStateReceta._reset();
       try {
-        await this.axios.post(this.url, this.datos, {
+        let {data} = await this.axios.post(this.url, this.datos, {
           "content-type": "application/json",
         });
+        let insertedId = data._id
+        this.datos.likes = 0
+        console.log(insertedId);
+        this.datos._id = insertedId
+        console.log(JSON.stringify(this.datos, null, 4));
         this.$store.dispatch("modificarReceta", this.datos);
         this.$router.push("/receta");
       } catch (error) {
