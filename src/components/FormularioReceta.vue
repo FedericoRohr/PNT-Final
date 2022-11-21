@@ -265,6 +265,9 @@ export default {
       };
     },
     async enviarReceta() {
+      let titulo = this.formDataReceta.titulo
+      titulo = titulo.charAt(0).toUpperCase() + titulo.slice(1).toLowerCase()
+      this.formDataReceta.titulo = titulo
       this.datos = this.formDataReceta;
       this.datos.ingredientes = this.ingredientes;
       console.log(JSON.stringify(this.datos, null, 4));
@@ -282,6 +285,9 @@ export default {
       }
     },
     enviarIngrediente() {
+      let nombre = this.formDataIngrediente.nombre
+      nombre = nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase()
+      this.formDataIngrediente.nombre = nombre
       this.ingredientes.push(this.formDataIngrediente);
       this.formDataIngrediente = this.getInitialDataIngrediente();
       this.formStateIngrediente._reset();
