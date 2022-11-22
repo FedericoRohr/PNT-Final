@@ -1,6 +1,8 @@
 <template>
   <section class="src-componentes-formulario">
     <div class="jumbotron">
+      <br>
+      <div class="cajaLogin">
       <h2>Login de usuario</h2>
       <br />
 
@@ -66,6 +68,7 @@
         Usuario o contraseña invalido
       </div>
     </div>
+  </div>
   </section>
 </template>
 
@@ -120,13 +123,39 @@ export default {
 
 <style scoped lang="css">
 .jumbotron {
-  background-color: teal;
+  background-image: url("../images/gastronomia\ global\ title.jpg");
   color: white;
+  background-size: cover; 
+  height: 100vh; 
 }
+
+.cajaLogin{
+  background-color: #2f2f2fac!important;
+  border-radius: 5px;
+  padding: 20px 20px;
+  margin-top: 20px;
+}
+
 hr {
   background-color: #bbb;
 }
 pre {
   color: white;
 }
+
+button{
+  text-decoration: none!important;
+  color: rgba(255, 255, 255, 0.738)!important;
+}
+
+button{
+  background-color: #2f2f2f!important;
+  border-color: #2f2f2f!important;
+}
+button:hover{
+  background-color: #D9553B!important;
+  transition: 0.5s;
+  border-color: #2f2f2f;
+}
+
 </style>

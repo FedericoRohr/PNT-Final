@@ -1,5 +1,5 @@
 <template>
-  <div class="card" @click="mostrarReceta()">
+  <div class="card cardHover" @click="mostrarReceta()">
     <div class="card-body">
       <h2 class="card-title">
         {{ receta.titulo }}
@@ -51,5 +51,10 @@ export default {
 };
 </script>
 
-<style scoped lang="css">
+<style scoped  lang="css">
+.cardHover:hover{
+  background-color: #D9553B;
+  transition: 1s;
+  cursor: pointer;
+}
 </style>

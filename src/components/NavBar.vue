@@ -36,7 +36,7 @@
           </li>
           <li class="nav-item" v-if="!usuarioLogeadoVuex">
             <router-link to="/newsletter">
-              <a class="nav-link" href="#">Subscribirse al Newsletter</a>
+              <a class="nav-link" href="#">Suscribirse al Newsletter</a>
             </router-link>
           </li>
 
@@ -47,7 +47,7 @@
           </li>
         </ul>
         <button
-          class="btn btn-success my-2 my-sm-0 mr-3"
+          class="btn btn-success botonLogin my-2 my-sm-0 mr-3"
           @click="$router.push('/login')"
           v-if="!usuarioLogeadoVuex"
         >
@@ -106,7 +106,7 @@ nav .navbar{
   background-color: transparent;
 }
 
-a{
+a, button{
   text-decoration: none!important;
   color: rgba(255, 255, 255, 0.738)!important;
 }
@@ -114,4 +114,15 @@ a:hover{
   color: #D9553B!important;
   transition: 0.5s;
 }
+button{
+  background-color: #2f2f2f;
+  border-color: #2f2f2f;
+  margin-top: -25px!important;
+}
+button:hover{
+  background-color: #D9553B!important;
+  transition: 0.5s;
+  border-color: #2f2f2f;
+}
+
 </style>
