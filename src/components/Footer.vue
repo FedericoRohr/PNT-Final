@@ -16,7 +16,7 @@
                         <h4>Información</h4>
                         <ul class="address1">
                             <li><i class="fa fa-map-marker"></i>Buenos Aires, Argentina</li>
-                            <li><i class="fa fa-envelope"></i><a href="mailto:#">info@hellokitchen.com</a></li>
+                            <li><i class="fa fa-envelope"></i><a href="mailto:#">hellokitchenort@gmail.com</a></li>
                             <li><i class="fa fa-mobile" aria-hidden="true"></i> <a href="tel:11-4325-6578">11-4325-6578 </a></li>
                         </ul>
                     </div>
