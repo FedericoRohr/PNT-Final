@@ -1,12 +1,12 @@
 <template>
   <section class="src-components-ingreso-gastos">
     <div class="jumbotron">
-      <div class="cajaForm">
+      <div class="cajaForm col-12">
       <h2>Ingresa una receta</h2>
 
-      <table>
-        <tr>
-          <td class="receta">
+      <table class="container-fluid">
+        <tr class="col-12">
+          <td class="receta col-6">
             <!--    FORMULARIO RECETA     -->
             <vue-form :state="formStateReceta" @submit.prevent="enviarReceta()">
               <!-- ----------------------------------- -->
@@ -123,7 +123,7 @@
               </button>
             </vue-form>
           </td>
-          <td class="receta">
+          <td class="receta col-6">
             <!--    FORMULARIO INGREDIENTES     -->
             <vue-form
               :state="formStateIngrediente"

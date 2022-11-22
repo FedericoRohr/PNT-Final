@@ -5,9 +5,9 @@
       <ul class="list-group buscador my-3 ">        
         <li class="list-group-item pb-4">
           <h2 class="mt-2">Buscá tu receta</h2>
-          <table style="color: black">
-            <tr>
-              <td style="padding: 0px 20px 0px 0px">
+          <table style="color: black" class="container-fluid">
+            <tr class="col-12">
+              <td style="padding: 0px 20px 0px 0px" class="col-4">
                 <label for="titulo">Nombre receta</label>
                 <input
                   type="text"
@@ -18,7 +18,7 @@
                   placeholder="Nombre de receta..."
                 />
               </td>
-              <td style="padding: 0px 20px 0px 0px">
+              <td style="padding: 0px 20px 0px 0px" class="col-4">
                 <label for="categoria">Categoría</label>
                 <select
                   name="categoria"
@@ -35,7 +35,7 @@
                   </option>
                 </select>
               </td>
-              <td>
+              <td class="col-4" style="padding: 0px 0px 0px 0px">
                 <label for="momento">Momento</label>
                 <select
                   name="cateogria"
@@ -70,6 +70,7 @@
             :filter="true"
             display="chip"
             :showToggleAll="false"
+            class="w-100"
           />
         </li>
       </ul>
