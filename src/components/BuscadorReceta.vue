@@ -1,13 +1,13 @@
 <template>
   <section class="src-components-buscador-receta">
     <div class="jumbotron">
-      <h2>Busca una receta</h2>
       <br />
-      <ul class="list-group">
-        <li class="list-group-item">
-          <table style="color: black">
-            <tr>
-              <td style="padding: 0px 20px 0px 0px">
+      <ul class="list-group buscador my-3 ">        
+        <li class="list-group-item pb-4">
+          <h2 class="mt-2">Buscá tu receta</h2>
+          <table style="color: black" class="container-fluid">
+            <tr class="col-12">
+              <td style="padding: 0px 20px 0px 0px" class="col-4">
                 <label for="titulo">Nombre receta</label>
                 <input
                   type="text"
@@ -15,10 +15,10 @@
                   id="titulo"
                   name="titulo"
                   v-model.trim="tituloReceta"
-                  placeholder="Ingresar un nombre de receta..."
+                  placeholder="Nombre de receta..."
                 />
               </td>
-              <td style="padding: 0px 20px 0px 0px">
+              <td style="padding: 0px 20px 0px 0px" class="col-4">
                 <label for="categoria">Categoría</label>
                 <select
                   name="categoria"
@@ -35,7 +35,7 @@
                   </option>
                 </select>
               </td>
-              <td>
+              <td class="col-4" style="padding: 0px 0px 0px 0px">
                 <label for="momento">Momento</label>
                 <select
                   name="cateogria"
@@ -56,7 +56,9 @@
             </tr>
           </table>
         </li>
-        <li class="list-group-item">
+        
+        <li class="list-group-item pb-4" >
+          <p>Ingredientes</p>
           <MultiSelect
             style="width: -moz-available"
             id="ingredientes"
@@ -68,6 +70,7 @@
             :filter="true"
             display="chip"
             :showToggleAll="false"
+            class="w-100"
           />
         </li>
       </ul>
@@ -78,7 +81,7 @@
 
     <div v-if="mostrarCard">
       <div
-        class="jumbotron"
+        class="jumbotron2"
         style="color: black"
         v-if="recetasFiltradas.length > 0"
       >
@@ -219,16 +222,34 @@ export default {
 </script>
 
 <style scoped lang="css">
+
 .jumbotron {
-  background-color: teal;
+  background-image: url("../images/receta-de-torta-oreo-800x534.jpg");
   color: white;
+  background-size: cover; 
+  height: 75vh; 
 }
+
+.jumbotron2{
+  padding: 30px 10px;
+  background-color: #2f2f2fb3;
+  color: white;
+  background-size: cover;
+}
+
 
 hr {
   background-color: #bbb;
 }
 
+.list-group-item{
+  background-color: #2f2f2fac!important;
+}
+
 table {
   width: -moz-available;
+}
+label{
+  color: white;
 }
 </style>

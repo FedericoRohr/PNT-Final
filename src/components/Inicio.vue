@@ -8,7 +8,7 @@
     >
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="../images/images (4).jpg" class="d-block w-100" alt="..." />
+          <img src="../images/gastronomia global title.jpg" class="d-block w-100" alt="..." />
         </div>
         <div class="carousel-item">
           <img
@@ -18,7 +18,7 @@
           />
         </div>
         <div class="carousel-item">
-          <img src="../images/images (3).jpg" class="d-block w-100" alt="..." />
+          <img src="../images/Gastronomia-Peru-4.jpg" class="d-block w-100" alt="..." />
         </div>
       </div>
       <button
@@ -41,6 +41,7 @@
       </button>
     </div>
   </div>
+  <h1 class="titulo"><span>Sobre nosotros...</span></h1>
   <div class="media my-5 w-75 mx-auto">
   <img src="../images/Hellow Kitchen (2).png" class="align-self-center mr-3 w-25" alt="...">
   <div class="media-body mt-5">
@@ -49,46 +50,48 @@
     <p>Empoderamos a los que cada día cocinan desde casa en cualquier parte del mundo para que entre todos nos ayudemos, compartiendo recetas y trucos de cocina..</p>
   </div>
 </div>
+<h1 class="titulo"><span>Recetas fáciles, que nunca fallan!</span></h1>
+
 <div class="card-columns my-5 w-75 mx-auto">
   <div class="card">
-    <img src="../images/images (3).jpg" class="card-img-top" alt="...">
+    <img src="../images/receta-de-tarta-banoffee-800x533.jpg" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title">Card title that wraps to a new line</h5>
-      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <h5 class="card-title">Torta Banoffee tradicional, un antes y después en tus postres</h5>
+      <p class="card-text">Hoy les presentamos la receta de la famosa Tarta Banoffee de plátano o banana, por fuera parece ser super sofisticada pero realmente van a ver que es una pavada, ya que nosotros le vamos a encontrar la vuelta y la hacemos en un toque.</p>
     </div>
   </div>
   <div class="card p-3">
     <blockquote class="blockquote mb-0 card-body">
-      <p>A well-known quote, contained in a blockquote element.</p>
+      <p>Cuando comes algo y tu paladar te dice lo que falta, ahí es cuando empiezas a combinar.</p>
       <footer class="blockquote-footer">
         <small class="text-muted">
-          Someone famous in <cite title="Source Title">Source Title</cite>
+          Justin Quek <cite title="Source Title">The Gourmet Journal</cite>
         </small>
       </footer>
     </blockquote>
   </div>
   <div class="card">
-    <img src="../images/images (3).jpg" class="card-img-top" alt="...">
+    <img src="../images/receta-de-torta-oreo-800x534.jpg" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+      <h5 class="card-title">Cómo hacer una Torta Oreo fácil</h5>
+      <p class="card-text">La Torta Oreo nos encanta a todos por su ingrediente principal que son las galletitas de chocolate siempre presentes para hacer postres deliciosos. Haceme caso y tené a mano esta receta, tus tardes de frío te lo van a agradecer.</p>
       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
     </div>
   </div>
   <div class="card bg-primary text-white text-center p-3">
     <blockquote class="blockquote mb-0">
-      <p>A well-known quote, contained in a blockquote element.</p>
+      <p>Una receta no tiene alma. Es el cocinero quien debe darle alma a la receta.</p>
       <footer class="blockquote-footer text-white">
         <small>
-          Someone famous in <cite title="Source Title">Source Title</cite>
+          Thomas Keller <cite title="Source Title">The Gourmet Journal</cite>
         </small>
       </footer>
     </blockquote>
   </div>
   <div class="card text-center">
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has a regular title and short paragraphy of text below it.</p>
+      <h5 class="card-title">Babé, babé.</h5>
+      <p class="card-text">Cómo hacer huevos revueltos (¡y que queden bien!)</p>
       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
     </div>
   </div>
@@ -97,18 +100,18 @@
   </div>
   <div class="card p-3 text-right">
     <blockquote class="blockquote mb-0">
-      <p>A well-known quote, contained in a blockquote element.</p>
+      <p>El descubrimiento de un nuevo plato es de más provecho para la humanidad que el descubrimiento de una estrella.</p>
       <footer class="blockquote-footer">
         <small class="text-muted">
-          Someone famous in <cite title="Source Title">Source Title</cite>
+          Jean Anthelme Brillat-Savarin <cite title="Source Title">New York times</cite>
         </small>
       </footer>
     </blockquote>
   </div>
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p>
+      <h5 class="card-title">Vas a sufrir y te vas a olvidar.</h5>
+      <p class="card-text">Masa para ravioles caseros paso a paso</p>
       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
     </div>
   </div>
@@ -159,4 +162,31 @@ export default {
 .cajaCarrousel{
   background-color: black;
 }
+
+.bg-primary{
+  background-color: #D9553B!important;
+}
+
+
+.titulo
+{
+  background: linear-gradient(
+    to right, 
+    #181C39 10%, 
+    #D9553B 40%, 
+    #D9553B 60%, 
+    #181C39 90%);
+  text-align: center;
+  color: #fff;
+  font-family: tahoma;
+  font-weight: lighter;
+}
+
+.titulo span
+{
+  padding: .5em;
+  display: block;  
+  text-transform: uppercase;
+}
+
 </style>

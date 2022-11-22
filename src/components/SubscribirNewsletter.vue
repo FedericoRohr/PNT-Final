@@ -1,7 +1,9 @@
 <template>
   <section class="src-componentes-formulario">
     <div class="jumbotron" v-if="!emailEnviado">
-      <h2>Subscribite al newsletter</h2>
+      <br>
+      <div class="cajaForm">
+      <h2>Suscribite al newsletter</h2>
       <br />
 
       <vue-form :state="formState" @submit.prevent="enviar()">
@@ -36,10 +38,11 @@
         <br />
 
         <button class="btn btn-success my-3" :disabled="formState.$invalid">
-          Subscribir
+          Suscribir
         </button>
       </vue-form>
     </div>
+  </div>
     <div class="jumbotron" v-else>
       <h2>Email enviado!</h2>
     </div>
@@ -87,8 +90,35 @@
 </script>
 
 <style scoped lang="css">
+
+
 .jumbotron {
-  background-color: teal;
+  background-image: url("../images/receta-de-tarta-banoffee-800x533.jpg");
   color: white;
+  background-size: cover;
+  height: 100vh;
+}
+
+.cajaForm{
+  background-color: #2f2f2fac!important;
+  border-radius: 5px;
+  padding: 20px 20px;
+  margin-top: 20px;
+}
+
+
+button{
+  text-decoration: none!important;
+  color: rgba(255, 255, 255, 0.738)!important;
+}
+
+button{
+  background-color: #2f2f2f!important;
+  border-color: #2f2f2f!important;
+}
+button:hover{
+  background-color: #D9553B!important;
+  transition: 0.5s;
+  border-color: #2f2f2f;
 }
 </style>

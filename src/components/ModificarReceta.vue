@@ -1,11 +1,12 @@
 <template>
   <section class="src-components-ingreso-gastos">
     <div class="jumbotron">
-      <h2>Ingresa una receta</h2>
+      <div class="cajaForm col-12">
+      <h2>Modifique la receta</h2>
 
-      <table>
-        <tr>
-          <td class="receta">
+      <table class="container-fluid">
+        <tr class="col-12">
+          <td class="receta col-6">
             <!--    FORMULARIO RECETA     -->
             <vue-form :state="formStateReceta" @submit.prevent="enviarReceta()">
               <!-- ----------------------------------- -->
@@ -122,7 +123,7 @@
               </button>
             </vue-form>
           </td>
-          <td class="receta">
+          <td class="receta col-6">
             <!--    FORMULARIO INGREDIENTES     -->
             <vue-form
               :state="formStateIngrediente"
@@ -183,12 +184,13 @@
         </tr>
       </table>
     </div>
+    </div>
 
     <br />
 
     <div class="jumbotron" v-if="mostrarReceta()">
       <div
-        class="jumbotron"
+        class="jumbotron2"
         style="background-color: rgb(235, 255, 251); color: black"
       >
         <h1>{{ formDataReceta.titulo }}</h1>
@@ -318,16 +320,59 @@ export default {
 
 <style scoped lang="css">
 .jumbotron {
-  background-color: teal;
+  background-image: url("../images/receta-de-tarta-banoffee-800x533.jpg");
+  color: white;
+  background-size: cover;
+}
+
+.cajaForm{
+  background-color: #2f2f2fac!important;
+  border-radius: 5px;
+  padding: 20px 20px;
+  margin-top: 50px;
+}
+
+.jumbotron2{
+  padding: 30px 10px;
+  background-color: #2f2f2fb3!important;
+  color: white!important;
+  background-size: cover;
+}
+
+table{
   color: white;
 }
+
+button{
+  text-decoration: none!important;
+  color: rgba(255, 255, 255, 0.738)!important;
+}
+
+button{
+  background-color: #2f2f2f!important;
+  border-color: #2f2f2f!important;
+}
+button:hover{
+  background-color: #D9553B!important;
+  transition: 0.5s;
+  border-color: #2f2f2f;
+}
+
+
+td.receta {
+  padding: 50px;
+}
+
+
 
 hr {
   background-color: #bbb;
 }
 
-td.receta {
-  padding: 50px;
+
+
+.muestraReceta{
+  margin-top: 50px;
 }
 
 table {

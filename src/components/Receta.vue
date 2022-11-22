@@ -1,6 +1,6 @@
 <template>
   <div class="jumbotron">
-    <div class="card">
+    <div class="card mt-5 cajaForm">
       <div class="card-body">
         <table>
           <tr>
@@ -150,7 +150,39 @@ export default {
 </script>
 
 <style scoped lang="css">
+
 .jumbotron {
-  background-color: teal;
+  background-image: url("../images/receta-de-torta-oreo-800x534.jpg");
+  color: white;
+  background-size: cover; 
+}
+.cajaForm{
+  background-color: #2f2f2fac!important;
+  border-radius: 5px;
+  padding: 20px 20px;
+  margin-top: 20px;
+  color: white;
+}
+.table{
+  color: white;
+}
+
+button{
+  text-decoration: none!important;
+  color: rgba(255, 255, 255, 0.738)!important;
+}
+
+button{
+  background-color: #2f2f2f!important;
+  border-color: #2f2f2f!important;
+}
+button:hover{
+  background-color: #D9553B!important;
+  transition: 0.5s;
+  border-color: #2f2f2f;
+}
+
+.modal-body{
+  color: black;
 }
 </style>
