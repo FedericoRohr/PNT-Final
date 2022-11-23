@@ -46,6 +46,7 @@
     <div class="jumbotron cajitaEnviado" v-else>
       <div class="cajitaEnviado">
         <h2 class="my-5 text-center">¡Email enviado!</h2>
+        <h2 class="my-5 text-center">Verificá la casilla de correo <b><i>{{datos.email}}</i></b></h2>
       </div>  
     </div>
   </section>
