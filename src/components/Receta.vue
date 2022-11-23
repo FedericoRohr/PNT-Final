@@ -22,18 +22,69 @@
                         <b>Momento: </b>
                         {{ mostrarMomentoVuex }}
                       </li>
-                      <li>
-                        <b>Likes: </b>
-                        {{ mostrarLikesVuex }}
-                      </li>
                     </ul>
                   </td>
                 </tr>
               </table>
             </td>
-            <td style="float: right" v-if="usuarioLogeadoVuex">
+            <td style="float: right">
               <ul style="list-style-type: none">
-                <li>
+                <li v-if="!usuarioLogeadoVuex">
+                  <button
+                    type="button"
+                    class="btn btn-primary mb-3"
+                    data-toggle="modal"
+                    data-target="#modalMail"
+                  >
+                    Enviar al mail
+                  </button>
+                  <div
+                    class="modal fade"
+                    id="modalMail"
+                    tabindex="-1"
+                    aria-labelledby="modalMailLabel"
+                    aria-hidden="true"
+                    role="dialog"
+                  >
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-body">
+                          <label for="email"
+                            >Ingrese un mail para enviar la receta</label
+                          >
+                          <input
+                            type="email"
+                            id="email"
+                            class="form-control"
+                            autocomplete="off"
+                            v-model.trim="email"
+                            name="email"
+                            required
+                            placeholder="Ingresa tu email..."
+                          />
+                        </div>
+                        <div class="modal-footer">
+                          <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal"
+                          >
+                            Cerrar
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn-danger"
+                            @click="enviarReceta()"
+                            data-dismiss="modal"
+                          >
+                            Enviar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li v-if="usuarioLogeadoVuex">
                   <button
                     type="button"
                     class="btn btn-primary mb-3"
@@ -42,7 +93,7 @@
                     Modificar
                   </button>
                 </li>
-                <li>
+                <li v-if="usuarioLogeadoVuex">
                   <!-- Button trigger modal -->
                   <button
                     type="button"
@@ -72,7 +123,7 @@
                             class="btn btn-secondary"
                             data-dismiss="modal"
                           >
-                            Close
+                            Cerrar
                           </button>
                           <button
                             type="button"
@@ -125,24 +176,30 @@ export default {
   data() {
     return {
       url: "http://localhost:8080/recetas/",
+      email: "",
     };
   },
   methods: {
     async eliminarReceta() {
       try {
-        console.log(this.mostrarIdVuex);
-        await this.axios.delete(
-          `${this.url}${this.mostrarIdVuex}`,
-          this.datos,
-          {
-            "content-type": "application/json",
-          }
-        );
+        await this.axios.delete(`${this.url}${this.mostrarIdVuex}`, {
+          "content-type": "application/json",
+        });
         this.$store.dispatch("modificarReceta", {});
-        this.$router.push('/');
+        this.$router.push("/");
       } catch (error) {
         console.log(error);
       }
+    },
+    async enviarReceta() {
+      let receta = {
+        titulo: this.mostrarTituloVuex,
+        ingredientes: this.mostrarIngredientesVuex,
+        descripcion: this.mostrarDescripcionVuex,
+      };
+      await this.axios.post(`${this.url}enviarReceta/${this.email}`, receta, {
+        "content-type": "application/json",
+      });
     },
   },
   computed: {},
@@ -150,39 +207,38 @@ export default {
 </script>
 
 <style scoped lang="css">
-
 .jumbotron {
   background-image: url("../images/receta-de-torta-oreo-800x534.jpg");
   color: white;
-  background-size: cover; 
+  background-size: cover;
 }
-.cajaForm{
-  background-color: #2f2f2fac!important;
+.cajaForm {
+  background-color: #2f2f2fac !important;
   border-radius: 5px;
   padding: 20px 20px;
   margin-top: 20px;
   color: white;
 }
-.table{
+.table {
   color: white;
 }
 
-button{
-  text-decoration: none!important;
-  color: rgba(255, 255, 255, 0.738)!important;
+button {
+  text-decoration: none !important;
+  color: rgba(255, 255, 255, 0.738) !important;
 }
 
-button{
-  background-color: #2f2f2f!important;
-  border-color: #2f2f2f!important;
+button {
+  background-color: #2f2f2f !important;
+  border-color: #2f2f2f !important;
 }
-button:hover{
-  background-color: #D9553B!important;
+button:hover {
+  background-color: #d9553b !important;
   transition: 0.5s;
   border-color: #2f2f2f;
 }
 
-.modal-body{
+.modal-body {
   color: black;
 }
 </style>
