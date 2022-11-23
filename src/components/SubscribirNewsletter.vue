@@ -43,8 +43,10 @@
       </vue-form>
     </div>
   </div>
-    <div class="jumbotron" v-else>
-      <h2>Email enviado!</h2>
+    <div class="jumbotron cajitaEnviado" v-else>
+      <div class="cajitaEnviado">
+        <h2 class="my-5 text-center">¡Email enviado!</h2>
+      </div>  
     </div>
   </section>
 </template>
@@ -105,6 +107,13 @@
   padding: 20px 20px;
   margin-top: 20px;
 }
+.cajitaEnviado{
+  background-color: #2f2f2fac!important;
+  border-radius: 5px;
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
 
 
 button{
