@@ -155,7 +155,7 @@
               v-for="(ingrediente, index) in mostrarIngredientesVuex"
               :key="index"
             >
-              <td>{{ ingrediente.nombre }}</td>
+              <td>{{ ingrediente.nombre | formatoIngrediente }}</td>
               <td>{{ ingrediente.cantidad }}</td>
             </tr>
           </tbody>
