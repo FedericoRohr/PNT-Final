@@ -1,5 +1,5 @@
 <template>
-  <div class="card cardHover" @click="mostrarReceta()">
+  <div class="card cardHover" @click="mostrarReceta()" :style="{'background-color': todosLosIngredientes ? '#c9ffc7': 'white'}">
     <div class="card-body">
       <h2 class="card-title">
         {{ receta.titulo }}
@@ -51,7 +51,17 @@ export default {
       this.$router.push("/receta");
     },
   },
-  computed: {},
+  computed: {
+    todosLosIngredientes() {
+      for (let i = 0; i < this.receta.ingredientes.length; i++) {
+        const ingrediente = this.receta.ingredientes[i];
+        if (this.ingredientes.indexOf(ingrediente.nombre) == -1) {
+          return false
+        } 
+      }
+      return true
+    }
+  },
   components: {},
 };
 </script>
